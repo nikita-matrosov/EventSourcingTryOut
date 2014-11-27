@@ -1,6 +1,8 @@
 package com.skillshot.eventsourcing;
 
 import com.google.common.eventbus.EventBus;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.skillshot.eventsourcing.handlers.EntityEventHandler;
 import com.skillshot.eventsourcing.service.TicketService;
 
@@ -16,13 +18,16 @@ public class Program {
     public static final EventBus eventBus = new EventBus();
 
     public static void main(String[] args) {
+        Injector injector = Guice.createInjector(new AppInjector());
+
+        final TicketService ticketService = injector.getInstance(TicketService.class);
+
         //somewhere in the place that handles events
         EntityEventHandler entityEventHandler = new EntityEventHandler();
         eventBus.register(entityEventHandler);
 
 
         //some code at the module publishing events
-        TicketService ticketService = new TicketService();
         ticketService.addTicket("Beautiful Flowers: The Rat", 80);
     }
 
