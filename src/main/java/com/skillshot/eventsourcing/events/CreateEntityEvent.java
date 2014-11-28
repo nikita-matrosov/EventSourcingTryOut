@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 /**
  * @author Nikita Matrosov
  */
-public class CreateEntityEvent implements EntityEvent {
+public class CreateEntityEvent extends BaseEntityEvent implements EntityEvent {
 
     private final String entityClass;
     private final ActionType actionType;

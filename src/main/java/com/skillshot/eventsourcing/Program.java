@@ -2,7 +2,8 @@ package com.skillshot.eventsourcing;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.skillshot.eventsourcing.handlers.EntityEventHandler;
+import com.skillshot.eventsourcing.handlers.CommonEntityEventHandler;
+import com.skillshot.eventsourcing.handlers.CreateEntityEventHandler;
 import com.skillshot.eventsourcing.service.TicketService;
 
 /**
@@ -18,7 +19,8 @@ public class Program {
 
 
         //somewhere in the place that handles events
-        final EntityEventHandler eventHandler = injector.getInstance(EntityEventHandler.class);
+        final CommonEntityEventHandler commonEntityEventHandler = injector.getInstance(CommonEntityEventHandler.class);
+        final CreateEntityEventHandler createEntityEventHandler = injector.getInstance(CreateEntityEventHandler.class);
 
 
         //some code at the module publishing events

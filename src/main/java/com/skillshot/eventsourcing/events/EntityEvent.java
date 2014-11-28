@@ -9,6 +9,10 @@ public interface EntityEvent {
 
     ActionType getActionType();
 
+    boolean isHandled();
+
+    void setHandled(boolean handled);
+
     enum ActionType {
         CREATE, MODIFY, DELETE
     }
