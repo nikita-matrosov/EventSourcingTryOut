@@ -16,6 +16,9 @@ public class SimpleTicketService implements TicketService {
     @Inject
     TicketRepository repository;
 
+    @Inject
+    EventPublisher eventPublisher;
+
     public long addTicket(String name, int price) {
         //business logic here
         final long ticketId = repository.save(new Ticket(name, price));
@@ -23,7 +26,7 @@ public class SimpleTicketService implements TicketService {
         System.out.println("processing new ticket. assigned new id: " + ticketId);
 
         //publish event about creating new entity
-        new EventPublisher().newCreateEntityEvent(savedTicket.getClass().getName(), savedTicket);
+        eventPublisher.newCreateEntityEvent(savedTicket.getClass().getName(), savedTicket);
 
         return ticketId;
     }

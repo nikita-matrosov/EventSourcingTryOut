@@ -1,14 +1,21 @@
 package com.skillshot.eventsourcing.events;
 
-import com.skillshot.eventsourcing.Program;
+import com.google.common.eventbus.EventBus;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * @author Nikita Matrosov
  */
+@Singleton
 public class EventPublisher {
 
+    @Inject
+    private EventBus eventBus;
+
     public void newCreateEntityEvent(String entityClassName, Object data) {
-        Program.eventBus.post(new CreateEntityEvent(entityClassName, data));
+        eventBus.post(new CreateEntityEvent(entityClassName, data));
     }
 
     /*public void newModifyEntityEvent(String entityClassName) {
