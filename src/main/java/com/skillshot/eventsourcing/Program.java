@@ -18,7 +18,7 @@ public class Program {
 
 
         //somewhere in the place that handles events
-        EntityEventHandler entityEventHandler = new EntityEventHandler();
+        final EntityEventHandler eventHandler = injector.getInstance(EntityEventHandler.class);
 
 
         //some code at the module publishing events
